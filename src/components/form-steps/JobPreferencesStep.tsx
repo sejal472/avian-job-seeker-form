@@ -24,15 +24,19 @@ const JobPreferencesStep: React.FC<JobPreferencesStepProps> = ({ data, updateDat
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="pilot">Pilot</SelectItem>
+                <SelectItem value="co-pilot">Co-Pilot</SelectItem>
                 <SelectItem value="flight-attendant">Flight Attendant</SelectItem>
+                <SelectItem value="cabin-crew">Cabin Crew</SelectItem>
                 <SelectItem value="aircraft-mechanic">Aircraft Mechanic</SelectItem>
                 <SelectItem value="ground-crew">Ground Crew</SelectItem>
                 <SelectItem value="customer-service">Customer Service</SelectItem>
                 <SelectItem value="air-traffic-controller">Air Traffic Controller</SelectItem>
                 <SelectItem value="baggage-handler">Baggage Handler</SelectItem>
-                <SelectItem value="dispatcher">Dispatcher</SelectItem>
-                <SelectItem value="security">Security</SelectItem>
-                <SelectItem value="operations">Operations</SelectItem>
+                <SelectItem value="dispatcher">Flight Dispatcher</SelectItem>
+                <SelectItem value="security">Airport Security</SelectItem>
+                <SelectItem value="operations">Flight Operations</SelectItem>
+                <SelectItem value="cargo-handler">Cargo Handler</SelectItem>
+                <SelectItem value="check-in-agent">Check-in Agent</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -45,30 +49,39 @@ const JobPreferencesStep: React.FC<JobPreferencesStepProps> = ({ data, updateDat
               <SelectContent>
                 <SelectItem value="flight-operations">Flight Operations</SelectItem>
                 <SelectItem value="cabin-crew">Cabin Crew</SelectItem>
-                <SelectItem value="maintenance">Maintenance</SelectItem>
+                <SelectItem value="maintenance">Aircraft Maintenance</SelectItem>
                 <SelectItem value="ground-operations">Ground Operations</SelectItem>
                 <SelectItem value="customer-service">Customer Service</SelectItem>
                 <SelectItem value="air-traffic-control">Air Traffic Control</SelectItem>
-                <SelectItem value="cargo">Cargo</SelectItem>
+                <SelectItem value="cargo">Cargo Operations</SelectItem>
+                <SelectItem value="security">Airport Security</SelectItem>
                 <SelectItem value="administration">Administration</SelectItem>
+                <SelectItem value="engineering">Engineering</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div>
-            <Label htmlFor="preferredLocation">Preferred Location *</Label>
+            <Label htmlFor="preferredLocation">Preferred Airport Location *</Label>
             <Select value={data.preferredLocation} onValueChange={(value) => updateData({ preferredLocation: value })}>
               <SelectTrigger>
-                <SelectValue placeholder="Select location" />
+                <SelectValue placeholder="Select airport location" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="new-york">New York (JFK/LGA)</SelectItem>
-                <SelectItem value="los-angeles">Los Angeles (LAX)</SelectItem>
-                <SelectItem value="chicago">Chicago (ORD)</SelectItem>
-                <SelectItem value="miami">Miami (MIA)</SelectItem>
-                <SelectItem value="dallas">Dallas (DFW)</SelectItem>
-                <SelectItem value="denver">Denver (DEN)</SelectItem>
-                <SelectItem value="atlanta">Atlanta (ATL)</SelectItem>
-                <SelectItem value="san-francisco">San Francisco (SFO)</SelectItem>
+                <SelectItem value="del-international">Delhi (DEL) - Indira Gandhi International</SelectItem>
+                <SelectItem value="bom-international">Mumbai (BOM) - Chhatrapati Shivaji International</SelectItem>
+                <SelectItem value="blr-international">Bangalore (BLR) - Kempegowda International</SelectItem>
+                <SelectItem value="hyd-international">Hyderabad (HYD) - Rajiv Gandhi International</SelectItem>
+                <SelectItem value="ccu-international">Kolkata (CCU) - Netaji Subhash Chandra Bose International</SelectItem>
+                <SelectItem value="maa-international">Chennai (MAA) - Chennai International</SelectItem>
+                <SelectItem value="cok-international">Kochi (COK) - Cochin International</SelectItem>
+                <SelectItem value="goa-international">Goa (GOI) - Goa International</SelectItem>
+                <SelectItem value="amd-international">Ahmedabad (AMD) - Sardar Vallabhbhai Patel International</SelectItem>
+                <SelectItem value="pune-domestic">Pune (PNQ) - Pune Airport</SelectItem>
+                <SelectItem value="jaipur-domestic">Jaipur (JAI) - Jaipur International</SelectItem>
+                <SelectItem value="lucknow-domestic">Lucknow (LKO) - Chaudhary Charan Singh International</SelectItem>
+                <SelectItem value="chandigarh-domestic">Chandigarh (IXC) - Chandigarh Airport</SelectItem>
+                <SelectItem value="bhubaneswar-domestic">Bhubaneswar (BBI) - Biju Patnaik International</SelectItem>
+                <SelectItem value="indore-domestic">Indore (IDR) - Devi Ahilya Bai Holkar Airport</SelectItem>
                 <SelectItem value="flexible">Flexible/Any Location</SelectItem>
               </SelectContent>
             </Select>
@@ -113,19 +126,19 @@ const JobPreferencesStep: React.FC<JobPreferencesStepProps> = ({ data, updateDat
       </div>
 
       <div>
-        <Label htmlFor="salaryExpectation">Salary Expectation (Annual USD)</Label>
+        <Label htmlFor="salaryExpectation">Salary Expectation (Annual INR)</Label>
         <Select value={data.salaryExpectation} onValueChange={(value) => updateData({ salaryExpectation: value })}>
           <SelectTrigger>
             <SelectValue placeholder="Select salary range" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="30000-40000">$30,000 - $40,000</SelectItem>
-            <SelectItem value="40000-50000">$40,000 - $50,000</SelectItem>
-            <SelectItem value="50000-60000">$50,000 - $60,000</SelectItem>
-            <SelectItem value="60000-80000">$60,000 - $80,000</SelectItem>
-            <SelectItem value="80000-100000">$80,000 - $100,000</SelectItem>
-            <SelectItem value="100000-120000">$100,000 - $120,000</SelectItem>
-            <SelectItem value="120000+">$120,000+</SelectItem>
+            <SelectItem value="200000-300000">₹2,00,000 - ₹3,00,000</SelectItem>
+            <SelectItem value="300000-500000">₹3,00,000 - ₹5,00,000</SelectItem>
+            <SelectItem value="500000-800000">₹5,00,000 - ₹8,00,000</SelectItem>
+            <SelectItem value="800000-1200000">₹8,00,000 - ₹12,00,000</SelectItem>
+            <SelectItem value="1200000-1800000">₹12,00,000 - ₹18,00,000</SelectItem>
+            <SelectItem value="1800000-2500000">₹18,00,000 - ₹25,00,000</SelectItem>
+            <SelectItem value="2500000+">₹25,00,000+</SelectItem>
             <SelectItem value="negotiable">Negotiable</SelectItem>
           </SelectContent>
         </Select>

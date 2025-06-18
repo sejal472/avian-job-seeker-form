@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Plane, User, Briefcase, GraduationCap, FileText } from 'lucide-react';
+import { Plane, User, Briefcase, GraduationCap, FileText, IndianRupee } from 'lucide-react';
 import PersonalInfoStep from './form-steps/PersonalInfoStep';
 import JobPreferencesStep from './form-steps/JobPreferencesStep';
 import QualificationsStep from './form-steps/QualificationsStep';
 import ExperienceStep from './form-steps/ExperienceStep';
 import DocumentsStep from './form-steps/DocumentsStep';
+import PaymentStep from './form-steps/PaymentStep';
 import { toast } from 'sonner';
 
 interface FormData {
@@ -50,6 +51,10 @@ interface FormData {
   resume: File | null;
   coverLetter: string;
   references: string;
+  
+  // Payment
+  utrNumber: string;
+  paymentStatus: string;
 }
 
 const initialFormData: FormData = {
@@ -58,7 +63,7 @@ const initialFormData: FormData = {
   email: '',
   phone: '',
   dateOfBirth: '',
-  nationality: '',
+  nationality: 'indian',
   address: '',
   city: '',
   state: '',
@@ -81,7 +86,9 @@ const initialFormData: FormData = {
   reason: '',
   resume: null,
   coverLetter: '',
-  references: ''
+  references: '',
+  utrNumber: '',
+  paymentStatus: ''
 };
 
 const steps = [
@@ -89,7 +96,8 @@ const steps = [
   { id: 2, title: 'Job Preferences', icon: Briefcase },
   { id: 3, title: 'Qualifications', icon: GraduationCap },
   { id: 4, title: 'Experience', icon: Plane },
-  { id: 5, title: 'Documents', icon: FileText }
+  { id: 5, title: 'Documents', icon: FileText },
+  { id: 6, title: 'Payment', icon: IndianRupee }
 ];
 
 const AirlineJobsForm = () => {
@@ -112,10 +120,13 @@ const AirlineJobsForm = () => {
     }
   };
 
+  const handlePaymentComplete = () => {
+    nextStep();
+  };
+
   const submitForm = () => {
     console.log('Form submitted:', formData);
-    toast.success('Application submitted successfully! We will contact you soon.');
-    // Here you would typically send the data to your backend
+    toast.success('Application submitted successfully! We will contact you within 3-5 business days. Your UTR: ' + formData.utrNumber);
   };
 
   const progress = (currentStep / steps.length) * 100;
@@ -132,18 +143,24 @@ const AirlineJobsForm = () => {
         return <ExperienceStep data={formData} updateData={updateFormData} />;
       case 5:
         return <DocumentsStep data={formData} updateData={updateFormData} />;
+      case 6:
+        return <PaymentStep data={formData} updateData={updateFormData} onPaymentComplete={handlePaymentComplete} />;
       default:
         return null;
     }
   };
 
+  const isLastStep = currentStep === steps.length;
+  const isPaymentStep = currentStep === 6;
+  const paymentCompleted = formData.paymentStatus === 'completed';
+
   return (
     <div className="max-w-4xl mx-auto">
       <Card className="shadow-xl">
-        <CardHeader className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+        <CardHeader className="bg-gradient-to-r from-orange-500 to-green-500 text-white">
           <CardTitle className="flex items-center gap-2 text-2xl">
             <Plane className="h-6 w-6" />
-            Airline Employment Application
+            Air Bharat Employment Application
           </CardTitle>
           <div className="mt-4">
             <div className="flex justify-between items-center mb-2">
@@ -157,7 +174,7 @@ const AirlineJobsForm = () => {
         <CardContent className="p-6">
           {/* Step Navigation */}
           <div className="flex justify-center mb-8">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 overflow-x-auto">
               {steps.map((step) => {
                 const Icon = step.icon;
                 return (
@@ -165,14 +182,14 @@ const AirlineJobsForm = () => {
                     key={step.id}
                     className={`flex flex-col items-center ${
                       currentStep >= step.id
-                        ? 'text-blue-600'
+                        ? 'text-orange-600'
                         : 'text-gray-400'
                     }`}
                   >
                     <div
                       className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${
                         currentStep >= step.id
-                          ? 'border-blue-600 bg-blue-50'
+                          ? 'border-orange-600 bg-orange-50'
                           : 'border-gray-300'
                       }`}
                     >
@@ -201,22 +218,23 @@ const AirlineJobsForm = () => {
               Previous
             </Button>
             
-            {currentStep === steps.length ? (
+            {isPaymentStep && paymentCompleted ? (
               <Button
                 type="button"
                 onClick={submitForm}
                 className="bg-green-600 hover:bg-green-700"
               >
-                Submit Application
+                Complete Application
               </Button>
-            ) : (
+            ) : !isPaymentStep ? (
               <Button
                 type="button"
                 onClick={nextStep}
+                className="bg-orange-600 hover:bg-orange-700"
               >
                 Next
               </Button>
-            )}
+            ) : null}
           </div>
         </CardContent>
       </Card>

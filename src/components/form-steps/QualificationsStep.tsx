@@ -46,13 +46,15 @@ const QualificationsStep: React.FC<QualificationsStepProps> = ({ data, updateDat
                 <SelectValue placeholder="Select education level" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="high-school">High School Diploma</SelectItem>
-                <SelectItem value="associate">Associate Degree</SelectItem>
+                <SelectItem value="10th-pass">10th Pass</SelectItem>
+                <SelectItem value="12th-pass">12th Pass</SelectItem>
+                <SelectItem value="diploma">Diploma</SelectItem>
                 <SelectItem value="bachelor">Bachelor's Degree</SelectItem>
                 <SelectItem value="master">Master's Degree</SelectItem>
                 <SelectItem value="phd">PhD</SelectItem>
                 <SelectItem value="aviation-school">Aviation Training School</SelectItem>
-                <SelectItem value="trade-school">Trade/Technical School</SelectItem>
+                <SelectItem value="technical-institute">Technical Institute</SelectItem>
+                <SelectItem value="iti">ITI</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -64,16 +66,18 @@ const QualificationsStep: React.FC<QualificationsStepProps> = ({ data, updateDat
                 <SelectValue placeholder="Add certification" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="private-pilot">Private Pilot License (PPL)</SelectItem>
-                <SelectItem value="commercial-pilot">Commercial Pilot License (CPL)</SelectItem>
-                <SelectItem value="airline-transport">Airline Transport Pilot License (ATPL)</SelectItem>
-                <SelectItem value="instrument-rating">Instrument Rating (IR)</SelectItem>
-                <SelectItem value="multi-engine">Multi-Engine Rating</SelectItem>
-                <SelectItem value="type-rating">Type Rating</SelectItem>
-                <SelectItem value="a&p-mechanic">A&P Mechanic License</SelectItem>
-                <SelectItem value="ground-instructor">Ground Instructor Certificate</SelectItem>
-                <SelectItem value="dispatcher">Aircraft Dispatcher License</SelectItem>
-                <SelectItem value="air-traffic">Air Traffic Control Certificate</SelectItem>
+                <SelectItem value="dgca-cpl">DGCA Commercial Pilot License (CPL)</SelectItem>
+                <SelectItem value="dgca-atpl">DGCA Airline Transport Pilot License (ATPL)</SelectItem>
+                <SelectItem value="dgca-ppl">DGCA Private Pilot License (PPL)</SelectItem>
+                <SelectItem value="dgca-ir">DGCA Instrument Rating (IR)</SelectItem>
+                <SelectItem value="dgca-me">DGCA Multi-Engine Rating</SelectItem>
+                <SelectItem value="dgca-type-rating">DGCA Type Rating</SelectItem>
+                <SelectItem value="dgca-ame">DGCA Aircraft Maintenance Engineer (AME)</SelectItem>
+                <SelectItem value="dgca-cabin-crew">DGCA Cabin Crew Certificate</SelectItem>
+                <SelectItem value="dgca-ground-instructor">DGCA Ground Instructor</SelectItem>
+                <SelectItem value="dgca-flight-dispatcher">DGCA Flight Dispatcher License</SelectItem>
+                <SelectItem value="aai-atc">AAI Air Traffic Control Certificate</SelectItem>
+                <SelectItem value="iata-training">IATA Training Certificate</SelectItem>
               </SelectContent>
             </Select>
             <div className="flex flex-wrap gap-2 mt-2">
@@ -101,16 +105,28 @@ const QualificationsStep: React.FC<QualificationsStepProps> = ({ data, updateDat
                 <SelectValue placeholder="Add language" />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="hindi">Hindi</SelectItem>
                 <SelectItem value="english">English</SelectItem>
-                <SelectItem value="spanish">Spanish</SelectItem>
-                <SelectItem value="french">French</SelectItem>
-                <SelectItem value="german">German</SelectItem>
-                <SelectItem value="portuguese">Portuguese</SelectItem>
-                <SelectItem value="italian">Italian</SelectItem>
-                <SelectItem value="mandarin">Mandarin Chinese</SelectItem>
-                <SelectItem value="japanese">Japanese</SelectItem>
-                <SelectItem value="arabic">Arabic</SelectItem>
-                <SelectItem value="russian">Russian</SelectItem>
+                <SelectItem value="bengali">Bengali</SelectItem>
+                <SelectItem value="telugu">Telugu</SelectItem>
+                <SelectItem value="marathi">Marathi</SelectItem>
+                <SelectItem value="tamil">Tamil</SelectItem>
+                <SelectItem value="gujarati">Gujarati</SelectItem>
+                <SelectItem value="urdu">Urdu</SelectItem>
+                <SelectItem value="kannada">Kannada</SelectItem>
+                <SelectItem value="odia">Odia</SelectItem>
+                <SelectItem value="punjabi">Punjabi</SelectItem>
+                <SelectItem value="malayalam">Malayalam</SelectItem>
+                <SelectItem value="assamese">Assamese</SelectItem>
+                <SelectItem value="maithili">Maithili</SelectItem>
+                <SelectItem value="santali">Santali</SelectItem>
+                <SelectItem value="kashmiri">Kashmiri</SelectItem>
+                <SelectItem value="nepali">Nepali</SelectItem>
+                <SelectItem value="konkani">Konkani</SelectItem>
+                <SelectItem value="sindhi">Sindhi</SelectItem>
+                <SelectItem value="dogri">Dogri</SelectItem>
+                <SelectItem value="manipuri">Manipuri</SelectItem>
+                <SelectItem value="bodo">Bodo</SelectItem>
               </SelectContent>
             </Select>
             <div className="flex flex-wrap gap-2 mt-2">
@@ -143,7 +159,7 @@ const QualificationsStep: React.FC<QualificationsStepProps> = ({ data, updateDat
               onCheckedChange={(checked) => updateData({ medicalCertificate: checked })}
             />
             <Label htmlFor="medicalCertificate">
-              I have or can obtain a valid medical certificate
+              I have or can obtain a valid DGCA medical certificate
             </Label>
           </div>
           <div className="flex items-center space-x-2">
@@ -153,7 +169,7 @@ const QualificationsStep: React.FC<QualificationsStepProps> = ({ data, updateDat
               onCheckedChange={(checked) => updateData({ backgroundCheck: checked })}
             />
             <Label htmlFor="backgroundCheck">
-              I can pass a background security check
+              I can pass a background security check (Police Verification)
             </Label>
           </div>
         </div>

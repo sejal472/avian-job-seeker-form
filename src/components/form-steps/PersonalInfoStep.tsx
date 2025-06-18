@@ -74,13 +74,7 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({ data, updateData })
                 <SelectValue placeholder="Select nationality" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="us">United States</SelectItem>
-                <SelectItem value="uk">United Kingdom</SelectItem>
-                <SelectItem value="ca">Canada</SelectItem>
-                <SelectItem value="au">Australia</SelectItem>
-                <SelectItem value="de">Germany</SelectItem>
-                <SelectItem value="fr">France</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
+                <SelectItem value="indian">Indian</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -112,22 +106,55 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({ data, updateData })
               />
             </div>
             <div>
-              <Label htmlFor="state">State/Province *</Label>
-              <Input
-                id="state"
-                value={data.state}
-                onChange={(e) => updateData({ state: e.target.value })}
-                placeholder="Enter state"
-                required
-              />
+              <Label htmlFor="state">State *</Label>
+              <Select value={data.state} onValueChange={(value) => updateData({ state: value })}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select state" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="andhra-pradesh">Andhra Pradesh</SelectItem>
+                  <SelectItem value="arunachal-pradesh">Arunachal Pradesh</SelectItem>
+                  <SelectItem value="assam">Assam</SelectItem>
+                  <SelectItem value="bihar">Bihar</SelectItem>
+                  <SelectItem value="chhattisgarh">Chhattisgarh</SelectItem>
+                  <SelectItem value="goa">Goa</SelectItem>
+                  <SelectItem value="gujarat">Gujarat</SelectItem>
+                  <SelectItem value="haryana">Haryana</SelectItem>
+                  <SelectItem value="himachal-pradesh">Himachal Pradesh</SelectItem>
+                  <SelectItem value="jharkhand">Jharkhand</SelectItem>
+                  <SelectItem value="karnataka">Karnataka</SelectItem>
+                  <SelectItem value="kerala">Kerala</SelectItem>
+                  <SelectItem value="madhya-pradesh">Madhya Pradesh</SelectItem>
+                  <SelectItem value="maharashtra">Maharashtra</SelectItem>
+                  <SelectItem value="manipur">Manipur</SelectItem>
+                  <SelectItem value="meghalaya">Meghalaya</SelectItem>
+                  <SelectItem value="mizoram">Mizoram</SelectItem>
+                  <SelectItem value="nagaland">Nagaland</SelectItem>
+                  <SelectItem value="odisha">Odisha</SelectItem>
+                  <SelectItem value="punjab">Punjab</SelectItem>
+                  <SelectItem value="rajasthan">Rajasthan</SelectItem>
+                  <SelectItem value="sikkim">Sikkim</SelectItem>
+                  <SelectItem value="tamil-nadu">Tamil Nadu</SelectItem>
+                  <SelectItem value="telangana">Telangana</SelectItem>
+                  <SelectItem value="tripura">Tripura</SelectItem>
+                  <SelectItem value="uttar-pradesh">Uttar Pradesh</SelectItem>
+                  <SelectItem value="uttarakhand">Uttarakhand</SelectItem>
+                  <SelectItem value="west-bengal">West Bengal</SelectItem>
+                  <SelectItem value="delhi">Delhi</SelectItem>
+                  <SelectItem value="chandigarh">Chandigarh</SelectItem>
+                  <SelectItem value="puducherry">Puducherry</SelectItem>
+                  <SelectItem value="jammu-kashmir">Jammu & Kashmir</SelectItem>
+                  <SelectItem value="ladakh">Ladakh</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div>
-              <Label htmlFor="zipCode">ZIP/Postal Code *</Label>
+              <Label htmlFor="zipCode">PIN Code *</Label>
               <Input
                 id="zipCode"
                 value={data.zipCode}
                 onChange={(e) => updateData({ zipCode: e.target.value })}
-                placeholder="Enter ZIP code"
+                placeholder="Enter PIN code"
                 required
               />
             </div>
